@@ -12,3 +12,17 @@ int lis(int start){
       ret = max(ret,lis(next)+1);
   return ret;
 }
+///////////////////////////////////////O(N^2)
+
+int dp[101], S[101];
+
+for(int i = 1; i<N; i++){
+  dp[i] = 1;
+  for(int j = 0; j<i; j++){
+    if(S[i]>S[j] && dp[i] < dp[j]+1)
+      dp[i] = dp[j]+1;
+  }
+}
+
+
+////////////////////////////////////////O(N^2)
