@@ -1,0 +1,58 @@
+#include <iostream>
+#include <queue>
+#include <cstring>
+#include <vector>
+using namespace std;
+
+int visit[20001];
+
+bool bfs(vector<int> node[], int start) {
+	
+	queue<pair<int, int>> Q;
+	if (visit[start] != -1)
+		Q.push(make_pair(start, visit[start]));
+	else
+		Q.push(make_pair(start, 1));
+	
+	while (!Q.empty()) {
+		int now = Q.front().first;
+		int which = Q.front().second;
+		visit[now] = which;
+		Q.pop();
+
+		for (int k = 0; k < node[now].size(); k++) {
+			int next = node[now][k];
+			if (visit[next] != -1 && visit[now] == visit[next])
+				return 0;
+			if (visit[next] == -1) 
+				Q.push(make_pair(next, which == 1 ? 2 : 1));
+		}
+	}
+	return 1;
+}
+
+int main(void) {
+	int T; scanf("%d", &T);
+	while (T--) {
+		memset(visit, -1, sizeof(visit));
+		vector<int> node[20001];
+		int V, E; scanf("%d %d", &V, &E);
+		for (int i = 0; i < E; i++) {
+			int from, to; scanf("%d%d", &from, &to);
+			node[from].push_back(to);
+			node[to].push_back(from);
+		}
+		//입력정리
+		bool okay = true;
+		for (int i = 1; i <= V; i++) {
+			 okay = bfs(node, i);
+			if (!okay) {
+				cout << "NO" << endl;
+				break;
+			}
+		}
+		if (okay)
+			cout << "YES" << endl;
+	}
+	return 0;
+}
