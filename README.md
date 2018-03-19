@@ -1,1 +1,2 @@
-# Thinking Algorithm with languages
+# Thinking Algorithm
+  ## Baekjoon
