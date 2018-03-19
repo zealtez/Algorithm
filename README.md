@@ -1,1 +1,1 @@
-# BOJ
+# Thinking Algorithm with languages
