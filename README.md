@@ -1,2 +1,2 @@
 # Thinking Algorithm
-  ## Baekjoon
+  > Baekjoon
